@@ -84,7 +84,7 @@ class Onbordscreen extends StatelessWidget {
                               const Padding(
                                 padding: EdgeInsets.all(10),
                                 child: Text(
-                                  "Health cheek and consolations easily anywhere anytime",
+                                  "make helath consolations easily anywhere anytime",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Constants.primcolor,
