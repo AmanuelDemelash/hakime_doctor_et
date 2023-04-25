@@ -1,12 +1,7 @@
 import 'package:country_phone_code_picker/controller/country_controller.dart';
-import 'package:country_phone_code_picker/core/country_phone_code_picker_widget.dart';
-import 'package:country_phone_code_picker/models/country.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 
-import '../../controllers/splashcontroller.dart';
 import '../../utils/constants.dart';
 import '../doctor/dsignup.dart';
 
@@ -38,10 +33,10 @@ class Signup extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            toolbarHeight: 170,
+            toolbarHeight: 200,
             automaticallyImplyLeading: false,
             flexibleSpace: Container(
-              height: 220,
+              height: 240,
               margin: const EdgeInsets.only(top: 40),
               child: Column(
                 children: const [
