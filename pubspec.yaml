@@ -67,6 +67,7 @@ dependencies:
   zego_uikit_prebuilt_call: ^2.0.0
   awesome_notifications: ^0.7.4+1
   zego_uikit_prebuilt_live_audio_room: ^2.0.1
+  hand_signature: ^3.0.1
 
 dev_dependencies:
   flutter_test:

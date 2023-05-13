@@ -546,6 +546,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.1.2"
+  hand_signature:
+    dependency: "direct main"
+    description:
+      name: hand_signature
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   hive:
     dependency: transitive
     description:

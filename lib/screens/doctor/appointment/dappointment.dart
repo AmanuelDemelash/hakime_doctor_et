@@ -125,6 +125,9 @@ class Dappointment extends StatelessWidget {
                                       onTap: () => Get.toNamed("/dappdetail",
                                           arguments: {
                                           "user_id":appointments[index]["user"]["id"],
+                                            "user_name":appointments[index]["user"]["full_name"],
+                                            "user_sex":appointments[index]["user"]["sex"],
+                                            "user_phone":appointments[index]["user"]["phone_number"],
                                           "appointment_id":appointments[index]
                                           ["id"]
                                           }),
@@ -360,6 +363,9 @@ class Dappointment extends StatelessWidget {
                                                 "/dappdetail",
                                                 arguments: {
                                                   "user_id":appointments[index]["user"]["id"],
+                                                  "user_name":appointments[index]["user"]["full_name"],
+                                                  "user_sex":appointments[index]["user"]["sex"],
+                                                  "user_phone":appointments[index]["user"]["phone_number"],
                                                   "appointment_id":appointments[index]
                                                   ["id"]
                                                 }
@@ -614,6 +620,17 @@ class Dappointment extends StatelessWidget {
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(10))),
                                         child: ListTile(
+                                          onTap: () =>Get.toNamed(
+                                              "/dappdetail",
+                                              arguments: {
+                                                "user_id":appointments[index]["user"]["id"],
+                                                "user_name":appointments[index]["user"]["full_name"],
+                                                "user_sex":appointments[index]["user"]["sex"],
+                                                "user_phone":appointments[index]["user"]["phone_number"],
+                                                "appointment_id":appointments[index]
+                                                ["id"]
+                                              }
+                                          ),
                                             title: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,

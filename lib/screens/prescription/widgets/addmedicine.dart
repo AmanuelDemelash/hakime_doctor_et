@@ -1,13 +1,14 @@
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hakime_doctor_et/controllers/doctor_controllers/writeprescriptioncontroller.dart';
 import 'package:hakime_doctor_et/screens/prescription/model/pmedcine.dart';
 
 import '../../../utils/constants.dart';
 class Addmedicine extends StatelessWidget {
-  const Addmedicine({Key? key}) : super(key: key);
+   Addmedicine({Key? key}) : super(key: key);
+
+  final _formkey=GlobalKey<FormState>();
 
   customsnack(String message) {
     return Get.snackbar("Error", message,
@@ -30,118 +31,127 @@ class Addmedicine extends StatelessWidget {
            const SizedBox(height: 10,),
            const  Text("Add medicine",style: TextStyle(color: Colors.black54),),
             const SizedBox(height: 10,),
-            // name
-            TextFormField(
-              controller: Get.find<WritrprescriptionController>().mname,
-              keyboardType: TextInputType.text,
-              validator: (value) {
-                if (value == "") {
-                  return customsnack("name is empity");
-                } else if (!RegExp(
-                    "^[a-zA-Z]")
-                    .hasMatch(value!)) {
-                  return customsnack("Please enter valid name");
-                } else {
-                  return null;
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                  hintText: "medicine name",
-                  filled: true,
-                  contentPadding: const EdgeInsets.all(15),
-                  prefixIcon: const Icon(Icons.medication_rounded),
-                  errorBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red),
-                      borderRadius:
-                      BorderRadius.all(Radius.circular(15))),
-                  border: const OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: Constants.whitesmoke),
-                      borderRadius:
-                      BorderRadius.all(Radius.circular(15))),
-                  focusedBorder: const OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: Constants.primcolor),
-                      borderRadius:
-                      BorderRadius.all(Radius.circular(15))),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color:
-                          Constants.primcolor.withOpacity(0.2)),
-                      borderRadius: const BorderRadius.all(
-                          Radius.circular(15))),
-                  fillColor: Colors.white),
-            ),
-            const SizedBox(height: 10,),
-            TextFormField(
-              controller: Get.find<WritrprescriptionController>().mstrength,
-              keyboardType: TextInputType.number,
-              validator: (value) {
-                if (value == "") {
-                  return customsnack("Strength is empity");
-                } else if (!RegExp(
-                    "^[a-zA-Z]")
-                    .hasMatch(value!)) {
-                  return customsnack("Please enter valid Strength");
-                } else {
-                  return null;
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                  hintText: "Strength",
-                  filled: true,
-                  contentPadding: const EdgeInsets.all(15),
-                  prefixIcon: const Icon(Icons.power),
-                  errorBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red),
-                      borderRadius:
-                      BorderRadius.all(Radius.circular(15))),
-                  border: const OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: Constants.whitesmoke),
-                      borderRadius:
-                      BorderRadius.all(Radius.circular(15))),
-                  focusedBorder: const OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: Constants.primcolor),
-                      borderRadius:
-                      BorderRadius.all(Radius.circular(15))),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color:
-                          Constants.primcolor.withOpacity(0.2)),
-                      borderRadius: const BorderRadius.all(
-                          Radius.circular(15))),
-                  fillColor: Colors.white),
-            ),
-             const SizedBox(height: 60,),
-            // add medicine
-            Container(
-              width: Get.width,
-              height: 50,
-              margin:const EdgeInsets.only(left: 10,right: 10),
-              decoration:const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10))
-              ),
-              child: ElevatedButton(
-                  onPressed:() {
-                if(Get.find<WritrprescriptionController>().mname.text.isEmpty || Get.find<WritrprescriptionController>().mstrength.text.isEmpty){
-                   customsnack("please enter valid medicine information");
-                }else{
-                  Pmedicine medicin= Pmedicine(
-                    name: Get.find<WritrprescriptionController>().mname.text,
-                    strength: Get.find<WritrprescriptionController>().mstrength.text
-                  );
-                 Get.find<WritrprescriptionController>().addmedicine(medicin);
-                 Get.back();
-                }
-              },
-                  child:const Text("Add medicine",style: TextStyle(color: Colors.white),)),
+            Form(
+              key: _formkey,
+                child:Column(
+              children: [
+                TextFormField(
+                  controller: Get.find<WritrprescriptionController>().mname,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == "") {
+                      return customsnack("name is empity");
+                    } else if (!RegExp(
+                        "^[a-zA-Z]")
+                        .hasMatch(value!)) {
+                      return customsnack("Please enter valid name");
+                    } else {
+                      return null;
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      hintText: "medicine name",
+                      filled: true,
+                      contentPadding: const EdgeInsets.all(15),
+                      prefixIcon: const Icon(Icons.medication_rounded),
+                      errorBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.red),
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(15))),
+                      border: const OutlineInputBorder(
+                          borderSide:
+                          BorderSide(color: Constants.whitesmoke),
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(15))),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide:
+                          BorderSide(color: Constants.primcolor),
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(15))),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color:
+                              Constants.primcolor.withOpacity(0.2)),
+                          borderRadius: const BorderRadius.all(
+                              Radius.circular(15))),
+                      fillColor: Colors.white),
+                ),
+                const SizedBox(height: 10,),
+                TextFormField(
+                  controller: Get.find<WritrprescriptionController>().mstrength,
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == "") {
+                      return customsnack("Strength is empity");
+                    } else if (!RegExp(
+                        "^[a-zA-Z]")
+                        .hasMatch(value!)) {
+                      return customsnack("Please enter valid Strength");
+                    } else {
+                      return null;
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      hintText: "Strength mm/ ml ",
+                      filled: true,
+                      contentPadding: const EdgeInsets.all(15),
+                      prefixIcon: const Icon(Icons.power),
+                      errorBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.red),
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(15))),
+                      border: const OutlineInputBorder(
+                          borderSide:
+                          BorderSide(color: Constants.whitesmoke),
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(15))),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide:
+                          BorderSide(color: Constants.primcolor),
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(15))),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color:
+                              Constants.primcolor.withOpacity(0.2)),
+                          borderRadius: const BorderRadius.all(
+                              Radius.circular(15))),
+                      fillColor: Colors.white),
+                ),
+                const SizedBox(height: 60,),
+                // add medicine
+                Container(
+                  width: Get.width,
+                  height: 50,
+                  margin:const EdgeInsets.only(left: 10,right: 10),
+                  decoration:const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(10))
+                  ),
+                  child: ElevatedButton(
+                      onPressed:() {
+                        _formkey.currentState!.save();
+                        if(Get.find<WritrprescriptionController>().mname.text.isEmpty || Get.find<WritrprescriptionController>().mstrength.text.isEmpty){
+                          customsnack("please enter valid medicine information");
+                        }else{
+                          Pmedicine medicin= Pmedicine(
+                              name: Get.find<WritrprescriptionController>().mname.text,
+                              strength: Get.find<WritrprescriptionController>().mstrength.text
+                          );
+                          Get.find<WritrprescriptionController>().addmedicine(medicin);
+                          Get.back();
 
-            )
+                        }
+                      },
+                      child:const Text("Add medicine",style: TextStyle(color: Colors.white),)),
+
+                )
+              ],
+            ))
+            // name
+
           ],
         ),
       ),

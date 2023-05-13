@@ -44,6 +44,9 @@ class Dappointmentdetail extends StatelessWidget {
         onPressed:() {
           Get.toNamed("/writeprep",arguments: {
             "user-id":data["user_id"],
+             "user_sex":data["user_sex"],
+             "user_phone":data["user_phone"],
+            "user_name":data["user_name"],
             "appo_id":data["appointment_id"]
           });
       }, tooltip: "Write prescription",

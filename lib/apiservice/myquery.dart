@@ -397,6 +397,9 @@ query(\$id:Int!){
     status
      user {
       id
+      full_name
+      sex
+      phone_number
     }
   }
 }
@@ -417,6 +420,9 @@ query(\$id:Int!){
     status
      user {
       id
+      full_name
+      sex
+      phone_number
     }
   }
 }
@@ -439,6 +445,9 @@ query(\$id:Int!){
     status
      user {
       id
+      full_name
+      sex
+      phone_number
     }
   }
 }
