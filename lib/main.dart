@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hakime_doctor_et/screens/onbording/splash.dart';
+import 'package:hakime_doctor_et/screens/prescription/writeprescription.dart';
 import 'package:hakime_doctor_et/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -86,7 +87,8 @@ class MyApp extends StatelessWidget {
       config: const SocketClientConfig(
           autoReconnect: true,
           inactivityTimeout: Duration(seconds: 30),
-          headers: {"x-hasura-admin-secret": "hakime"}),
+          headers: {"x-hasura-admin-secret": "hakime"}
+      ),
     );
     final Link link = Link.split(
         (request) => request.isSubscription, websocketLink, httpLink);
@@ -145,6 +147,7 @@ class MyApp extends StatelessWidget {
           GetPage(name: "/dwithdraw", page: () => DWithdraw()),
           GetPage(name: "/daddblog", page: () => AddBlog()),
           GetPage(name: "/dnotification", page: () => Dnotifiction()),
+          GetPage(name: "/writeprep", page: () =>WritePrescription()),
 
           // both screen
           GetPage(name: "/setting", page: () => Setting()),

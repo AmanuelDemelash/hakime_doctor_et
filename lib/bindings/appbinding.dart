@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:hakime_doctor_et/controllers/doctor_controllers/writeprescriptioncontroller.dart';
 
 import '../controllers/connectivity.dart';
 import '../controllers/doctor_controllers/blog_controller.dart';
@@ -31,5 +32,6 @@ class AppBinding implements Bindings {
 
     Get.put(BlogController());
     Get.put(NotificationController());
+    Get.put(WritrprescriptionController());
   }
 }

@@ -4,6 +4,7 @@ import '../utils/constants.dart';
 
 ThemeData light = ThemeData(
   fontFamily: "myfont",
+  useMaterial3: true,
   primaryColor: Constants.primcolor,
   secondaryHeaderColor: Constants.primcolor,
   brightness: Brightness.light,

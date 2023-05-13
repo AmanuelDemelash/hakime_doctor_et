@@ -406,14 +406,17 @@ class Ddashbord extends StatelessWidget {
                             builder: (result, {fetchMore, refetch}) {
                               if (result.hasException) {
                                 return Container();
+
                               }
                               if (result.isLoading) {
                                 return cool_loding();
                               }
-                              if (result.data!.isEmpty) {
+                              List appo=result.data!["appointments"];
+                              if (appo.isEmpty) {
                                 return SizedBox();
                               }
-                              return ListTile(
+                              return
+                                ListTile(
                                 title: const Text("Pending"),
                                 leading: const FaIcon(
                                   FontAwesomeIcons.timeline,
@@ -425,10 +428,9 @@ class Ddashbord extends StatelessWidget {
                                         color: Colors.amber,
                                         shape: BoxShape.circle),
                                     child: Text(
-                                        result.data!["appointments"].length == 0
+                                        appo.isEmpty
                                             ? 0.toString()
-                                            : result
-                                                .data!["appointments"].length
+                                            :appo.length
                                                 .toString())),
                               );
                             }),
@@ -452,7 +454,8 @@ class Ddashbord extends StatelessWidget {
                               if (result.isLoading) {
                                 return const SizedBox();
                               }
-                              if (result.data!.isEmpty) {
+                              List appo=result.data!["appointments"];
+                              if (appo.isEmpty) {
                                 return const SizedBox();
                               }
                               return ListTile(
@@ -467,10 +470,9 @@ class Ddashbord extends StatelessWidget {
                                         color: Colors.green,
                                         shape: BoxShape.circle),
                                     child: Text(
-                                        result.data!["appointments"].length == 0
+                                       appo.isEmpty
                                             ? 0.toString()
-                                            : result
-                                                .data!["appointments"].length
+                                            : appo.length
                                                 .toString())),
                               );
                             }),
@@ -523,7 +525,7 @@ class Ddashbord extends StatelessWidget {
                   // earning
                   Container(
                       width: Get.width,
-                      height: 340,
+
                       margin:
                           const EdgeInsets.only(top: 20, right: 10, left: 10),
                       decoration: BoxDecoration(
@@ -564,7 +566,8 @@ class Ddashbord extends StatelessWidget {
               ),
             );
           },
-        ));
+        )
+    );
   }
 }
 

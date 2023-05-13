@@ -1,14 +1,4 @@
 class Mymutation {
-  // user signup
-  static String usersignup = """ 
-mutation userSignUp(\$full_name:String!,\$sex:String!,\$phone_number:String!,\$email:String!,\$password:String!,\$date_of_birth:String!) {
-  userSignUp(full_name: \$full_name, sex:\$sex, phone_number:\$phone_number, email:\$email, password:\$password,date_of_birth:\$date_of_birth)
-  {
-    id
-    token
-  }
-}
-""";
 // doctor signup
   static String doctorsignup = """ 
 mutation doctorSignUp(\$full_name:String!,\$user_name:String!,\$date_of_birth:String!,\$experience_year:Int!,\$licence:Int!,
@@ -98,6 +88,7 @@ mutation(\$id:Int!){
   }
 }
 """;
+
 // update appointment statuss
   static String update_appo_statuss = """
   mutation(\$id:Int!,\$status:String!){

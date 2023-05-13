@@ -4,7 +4,6 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-
 import '../../../apiservice/mymutation.dart';
 import '../../../apiservice/myquery.dart';
 import '../../../controllers/doctor_controllers/dappointmentcontroller.dart';
@@ -17,7 +16,8 @@ import 'widgets/appointment_detail_shimmer.dart';
 class Dappointmentdetail extends StatelessWidget {
   Dappointmentdetail({Key? key}) : super(key: key);
 
-  int appointment_id = Get.arguments;
+
+  Map<String,dynamic> data=Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +36,24 @@ class Dappointmentdetail extends StatelessWidget {
               FontAwesomeIcons.angleLeft,
               color: Colors.black,
             )),
+       actions: [
+
+       ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed:() {
+          Get.toNamed("/writeprep",arguments: {
+            "user-id":data["user_id"],
+            "appo_id":data["appointment_id"]
+          });
+      }, tooltip: "Write prescription",
+      child:const FaIcon(FontAwesomeIcons.pen,color: Colors.white,)),
       body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Query(
             options: QueryOptions(
               document: gql(Myquery.appointment_detail),
-              variables: {"id": Get.arguments},
+              variables: {"id":data["appointment_id"]},
               pollInterval: const Duration(seconds: 10),
             ),
             builder: (result, {fetchMore, refetch}) {
@@ -717,7 +728,7 @@ class Dappointmentdetail extends StatelessWidget {
                                                                 .value = true;
                                                             runMutation({
                                                               "id":
-                                                                  appointment_id,
+                                                                  data["appointment_id"],
                                                               "status":
                                                                   "cancelled"
                                                             });
@@ -770,7 +781,7 @@ class Dappointmentdetail extends StatelessWidget {
                                                                 .value = true;
                                                             runMutation({
                                                               "id":
-                                                                  appointment_id,
+                                                                  data["appointment_id"],
                                                               "status":
                                                                   "confirmed"
                                                             });
@@ -824,6 +835,7 @@ class Dappointmentdetail extends StatelessWidget {
                                               ? const FaIcon(
                                                   FontAwesomeIcons.video,
                                                   size: 15,
+                                            color: Colors.white,
                                                 )
                                               : appointment["package_type"] ==
                                                       "voice"
@@ -831,10 +843,12 @@ class Dappointmentdetail extends StatelessWidget {
                                                       FontAwesomeIcons
                                                           .microphone,
                                                       size: 15,
+                                            color: Colors.white,
                                                     )
                                                   : const FaIcon(
                                                       FontAwesomeIcons.message,
                                                       size: 15,
+                                            color: Colors.white,
                                                     ),
                                           style: ElevatedButton.styleFrom(
                                               padding:
@@ -884,9 +898,9 @@ class Dappointmentdetail extends StatelessWidget {
                                               : appointment["package_type"] ==
                                                       "voice"
                                                   ? Text(
-                                                      "${appointment["package_type"]} call (Start at ${appointment["time"]}")
+                                                      "${appointment["package_type"]} call (Start at ${appointment["time"]}",style:const TextStyle(color: Colors.white),)
                                                   : Text(
-                                                      "${appointment["package_type"]}  (Start at ${appointment["time"]}"),
+                                                      "${appointment["package_type"]}  (Start at ${appointment["time"]}",style:const TextStyle(color: Colors.white),),
                                         ),
                                       ),
                                     ),

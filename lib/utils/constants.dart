@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Constants {
   static const String app_name = "Hakime Doctor ET";
-  static const Color primcolor = Color(0xfff065f46);
+  static const Color primcolor = Color(0xfff0e8388);
   static const Color whitesmoke = Color(0xffff4f4f4);
 }
 

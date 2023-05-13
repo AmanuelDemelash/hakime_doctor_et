@@ -190,8 +190,8 @@ class Onbordscreen extends StatelessWidget {
                                     .currentonbord_screen
                                     .value ==
                                 2
-                            ? const Text("Get Started")
-                            : const Text("Next")),
+                            ? const Text("Get Started",style: TextStyle(color: Colors.white),)
+                            : const Text("Next",style: TextStyle(color: Colors.white),)),
                   )))
         ],
       ),

@@ -327,21 +327,21 @@ query bank_informations(\$id:Int!){
 """;
   static String doc_pend_appoi = """
 query appointments(\$id:Int){
-  appointments(where: {doctor_id: {_eq:\$id}, status: {_eq: "pending"}}) {
+  appointments(where: {doctor_id: {_eq:\$id}, status: {_eq: pending}}) {
     id
   }
 }
 """;
   static String doc_confi_appoi = """
 query appointments(\$id:Int){
-  appointments(where: {doctor_id: {_eq:\$id}, status: {_eq: "confirmed"}}) {
+  appointments(where: {doctor_id: {_eq:\$id}, status: {_eq: confirmed}}) {
     id
   }
 }
 """;
   static String doc_cance_appoi = """
 query appointments(\$id:Int){
-  appointments(where: {doctor_id: {_eq:\$id}, status: {_eq: "cancelled"}}) {
+  appointments(where: {doctor_id: {_eq:\$id}, status: {_eq: cancelled}}) {
     id
   }
 }
@@ -383,7 +383,7 @@ query(\$id:Int!){
 """;
   static String doc_new_appointments = """
    query(\$id:Int!){
-  appointments(where: {doctor_id: {_eq:\$id}, status: {_eq: "pending"}}, order_by: {created_at: desc}) {
+  appointments(where: {doctor_id: {_eq:\$id},status: {_eq: pending}}, order_by: {created_at: desc}) {
     id
     package_type
     time
@@ -395,12 +395,15 @@ query(\$id:Int!){
     }
     price
     status
+     user {
+      id
+    }
   }
 }
 """;
   static String doc_upcoming_appointment = """
 query(\$id:Int!){
-  appointments(where: {doctor_id: {_eq:\$id}, status: {_eq: "confirmed"}}, order_by: {created_at: desc}) {
+  appointments(where: {doctor_id: {_eq:\$id}, status: {_eq: confirmed}}, order_by: {created_at: desc}) {
     id
     package_type
     time
@@ -412,6 +415,9 @@ query(\$id:Int!){
     }
     price
     status
+     user {
+      id
+    }
   }
 }
 
@@ -419,7 +425,7 @@ query(\$id:Int!){
 """;
   static String doc_complated_appointment = """
 query(\$id:Int!){
-  appointments(where: {doctor_id: {_eq:\$id}, status: {_eq: "completed"}}, order_by: {created_at: desc}) {
+  appointments(where: {doctor_id: {_eq:\$id}, status: {_eq: completed}}, order_by: {created_at: desc}) {
     id
     package_type
     time
@@ -431,6 +437,9 @@ query(\$id:Int!){
     }
     price
     status
+     user {
+      id
+    }
   }
 }
 
@@ -545,7 +554,6 @@ query(\$id:Int!){
 }
 
 """;
-
   static String top_articles = """
 query{
   blogs(where: {like: {_gte: 10}},limit: 4) {
@@ -605,7 +613,6 @@ query(\$id:Int!){
 }
 
 """;
-
   static String get_online_doctor = """
 query(\$id:Int!){
   doctors_by_pk(id:\$id) {

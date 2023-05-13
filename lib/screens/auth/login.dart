@@ -254,7 +254,7 @@ class Login extends StatelessWidget {
                                                 .value
                                             ? const ButtonSpinner()
                                             : const Text(
-                                                "Login",
+                                                "Login",style:TextStyle(color: Colors.white),
                                               )),
                                   )));
                         },

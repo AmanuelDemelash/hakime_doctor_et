@@ -1,11 +1,9 @@
-import 'package:badges/badges.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-
 import '../../../apiservice/myquery.dart';
 import '../../../controllers/splashcontroller.dart';
 import '../../../utils/constants.dart';
@@ -13,8 +11,6 @@ import 'widgets/appointment_card_shimmer.dart';
 
 class Dappointment extends StatelessWidget {
   Dappointment({super.key});
-
-  int id = Get.find<SplashController>().prefs.getInt("id");
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +57,12 @@ class Dappointment extends StatelessWidget {
                 child: Query(
                   options: QueryOptions(
                       document: gql(Myquery.doc_new_appointments),
-                      variables: {"id": id},
+                      variables: {"id":Get.find<SplashController>().prefs.getInt("id")},
                       pollInterval: const Duration(seconds: 10)),
                   builder: (result, {fetchMore, refetch}) {
+                    if(result.hasException){
+                      print(result.exception.toString());
+                    }
                     if (result.isLoading) {
                       return ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
@@ -124,7 +123,11 @@ class Dappointment extends StatelessWidget {
                                           Radius.circular(10))),
                                   child: ListTile(
                                       onTap: () => Get.toNamed("/dappdetail",
-                                          arguments: appointments[index]["id"]),
+                                          arguments: {
+                                          "user_id":appointments[index]["user"]["id"],
+                                          "appointment_id":appointments[index]
+                                          ["id"]
+                                          }),
                                       title: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -289,7 +292,7 @@ class Dappointment extends StatelessWidget {
                   child: Query(
                       options: QueryOptions(
                           document: gql(Myquery.doc_upcoming_appointment),
-                          variables: {"id": id},
+                          variables: {"id":Get.find<SplashController>().prefs.getInt("id")},
                           pollInterval: const Duration(seconds: 10)),
                       builder: (result, {fetchMore, refetch}) {
                         if (result.isLoading) {
@@ -355,8 +358,12 @@ class Dappointment extends StatelessWidget {
                                         child: ListTile(
                                             onTap: () => Get.toNamed(
                                                 "/dappdetail",
-                                                arguments: appointments[index]
-                                                    ["id"]),
+                                                arguments: {
+                                                  "user_id":appointments[index]["user"]["id"],
+                                                  "appointment_id":appointments[index]
+                                                  ["id"]
+                                                }
+                                                ),
                                             title: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -540,7 +547,7 @@ class Dappointment extends StatelessWidget {
                   child: Query(
                       options: QueryOptions(
                           document: gql(Myquery.doc_complated_appointment),
-                          variables: {"id": id},
+                          variables: {"id":Get.find<SplashController>().prefs.getInt("id")},
                           pollInterval: const Duration(seconds: 10)),
                       builder: (result, {fetchMore, refetch}) {
                         if (result.hasException) {
