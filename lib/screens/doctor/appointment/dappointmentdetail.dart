@@ -47,7 +47,10 @@ class Dappointmentdetail extends StatelessWidget {
              "user_sex":data["user_sex"],
              "user_phone":data["user_phone"],
             "user_name":data["user_name"],
-            "appo_id":data["appointment_id"]
+            "appo_id":data["appointment_id"],
+            "doc_name":data["doc_name"],
+            "doc_sep":data["doc_sep"],
+            "doc_img":data["doc_img"]
           });
       }, tooltip: "Write prescription",
       child:const FaIcon(FontAwesomeIcons.pen,color: Colors.white,)),

@@ -29,7 +29,6 @@ class AppBinding implements Bindings {
     Get.put(TransalationControlers());
     Get.put(DbankController());
     Get.put(DpackageController());
-
     Get.put(BlogController());
     Get.put(NotificationController());
     Get.put(WritrprescriptionController());

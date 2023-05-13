@@ -401,6 +401,15 @@ query(\$id:Int!){
       sex
       phone_number
     }
+    doctor {
+      full_name
+      speciallities {
+        speciallity_name
+      }
+      profile_image {
+        url
+      }
+    }
   }
 }
 """;
@@ -418,16 +427,23 @@ query(\$id:Int!){
     }
     price
     status
-     user {
+    user {
       id
       full_name
       sex
       phone_number
     }
+    doctor {
+      full_name
+      speciallities {
+        speciallity_name
+      }
+      profile_image {
+        url
+      }
+    }
   }
 }
-
-
 """;
   static String doc_complated_appointment = """
 query(\$id:Int!){
@@ -448,6 +464,15 @@ query(\$id:Int!){
       full_name
       sex
       phone_number
+    }
+    doctor {
+      full_name
+      speciallities {
+        speciallity_name
+      }
+      profile_image {
+        url
+      }
     }
   }
 }

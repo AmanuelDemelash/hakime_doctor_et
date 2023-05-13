@@ -30,6 +30,33 @@ class WritePrescription extends StatelessWidget {
     velocityRange: 2.0
   );
 
+  Widget _buildImageView() => Container(
+    width: 180.0,
+    height: 80.0,
+    decoration: BoxDecoration(
+      border: Border.all(),
+      color: Colors.white30,
+    ),
+    child: ValueListenableBuilder<ByteData?>(
+      valueListenable:  Get.find<WritrprescriptionController>().rawImageFit,
+      builder: (context, data, child) {
+        if (data == null) {
+          return Container(
+            color: Colors.red,
+            child: const Center(
+              child: Text('not signed yet (png)\nscaleToFill: false'),
+            ),
+          );
+        } else {
+          return Padding(
+            padding:const EdgeInsets.all(8.0),
+            child: Image.memory(data.buffer.asUint8List(),width: 200,height: 100,fit: BoxFit.cover,),
+          );
+        }
+      },
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +68,9 @@ class WritePrescription extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
         leading: IconButton(
-            onPressed: () => Get.back(),
+            onPressed: () {
+              Get.find<WritrprescriptionController>().medicines.value.clear();
+              Get.back();},
             icon: const FaIcon(
               FontAwesomeIcons.angleLeft,
               color: Colors.black,
@@ -94,7 +123,7 @@ class WritePrescription extends StatelessWidget {
                         width: Get.width,
                         margin: const EdgeInsets.all(10),
                         padding:
-                        const EdgeInsets.only(left: 20, right: 10, top: 5, bottom: 5),
+                        const EdgeInsets.only(left: 20,),
                         decoration: BoxDecoration(
                             color: Constants.primcolor.withOpacity(0.1),
                             borderRadius: const BorderRadius.all(Radius.circular(10))),
@@ -115,7 +144,7 @@ class WritePrescription extends StatelessWidget {
                                     },
                                   ),
                                 ),
-                                    isScrollControlled: true
+                                  isScrollControlled: true
                                 );
                               },
                               child: Container(
@@ -238,6 +267,7 @@ class WritePrescription extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
+                      // view prescription
                       SizedBox(
                         width: 180,
                         height: 60,
@@ -245,8 +275,12 @@ class WritePrescription extends StatelessWidget {
                             onPressed: ()async{
                               if(Get.find<WritrprescriptionController>().medicines.value.isEmpty){
                                 customsnack("empty medicine");
-
-                              }else{
+                              } else{
+                                Get.find<WritrprescriptionController>().rawImageFit.value= await control.toImage(
+                                  color: Colors.black,
+                                  background: Colors.greenAccent,
+                                  fit: true,
+                                );
                                 // show prescription
                                 showDialog(context: context, builder:(context) {
                                   return AlertDialog(
@@ -263,7 +297,7 @@ class WritePrescription extends StatelessWidget {
                                           ],
                                         ),
                                         Image.asset("assets/images/logo.png",width: 60,height:60,),
-                                        const Text("Hakime",style: TextStyle(color: Colors.black54),),
+                                        const Text("Hakime",style: TextStyle(color: Constants.primcolor,fontSize:14),),
 
                                       ],),
                                     content: Container(
@@ -271,63 +305,80 @@ class WritePrescription extends StatelessWidget {
                                         decoration:const BoxDecoration(
                                           color: Colors.white,
                                         ),
-                                      child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                           const Text("Patient information"),
-                                            const SizedBox(height:10),
-                                            Row(
-                                              children: [
-                                               const Text("Name :",style: TextStyle(color: Colors.black54),),
-                                                Text(data["user_name"],style: TextStyle(color: Colors.black54),),
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                             const Text("Patient information",style: TextStyle(color: Constants.primcolor),),
+                                              const SizedBox(height:10),
+                                              Row(
+                                                children: [
+                                                 const Text("Name :",style: TextStyle(color: Colors.black54),),
+                                                  Text(data["user_name"],style: TextStyle(color: Colors.black54),),
 
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                const Text("Sex :",style: TextStyle(color: Colors.black54),),
-                                                Text(data["user_sex"],style: TextStyle(color: Colors.black54),),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  const Text("Sex :",style: TextStyle(color: Colors.black54),),
+                                                  Text(data["user_sex"],style: TextStyle(color: Colors.black54),),
 
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                const Text("Phone :",style: TextStyle(color: Colors.black54),),
-                                                Text(data["user_phone"],style: const TextStyle(color: Colors.black54),),
-                                              ],
-                                            ),
-                                            // medicine
-                                            const SizedBox(height: 30,),
-                                            const Text("Medicine information"),
-                                            const SizedBox(height:10),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children:
-                                              const[
-                                                Text("Name",style: TextStyle(color: Colors.black54),),
-                                                Text("Amount",style: TextStyle(color: Colors.black54),)
-                                              ],
-                                            ),
-                                            const SizedBox(height:10),
-                                            SizedBox(
-                                              width: Get.width,
-                                              child: Column(
-                                                children:List.generate(Get.find<WritrprescriptionController>().medicines.value.length, (index) =>
-                                                 Row(
-                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                   children: [
-                                                   Text(Get.find<WritrprescriptionController>().medicines.value[index].name),
-                                                   Text(Get.find<WritrprescriptionController>().medicines.value[index].strength)
-                                                 ],)
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  const Text("Phone :",style: TextStyle(color: Colors.black54),),
+                                                  Text(data["user_phone"],style: const TextStyle(color: Colors.black54),),
+                                                ],
+                                              ),
+                                              // medicine
+                                              const SizedBox(height: 30,),
+                                              const Text("Medicine information",style: TextStyle(color: Constants.primcolor)),
+                                              const SizedBox(height:10),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children:
+                                                const[
+                                                  Text("Name",style: TextStyle(color: Colors.black54),),
+                                                  Text("Amount",style: TextStyle(color: Colors.black54),)
+                                                ],
+                                              ),
+                                              const SizedBox(height:10),
+                                              SizedBox(
+                                                width: Get.width,
+                                                child: Column(
+                                                  children:List.generate(Get.find<WritrprescriptionController>().medicines.value.length, (index) =>
+                                                   Row(
+                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                     children: [
+                                                     Text(Get.find<WritrprescriptionController>().medicines.value[index].name),
+                                                     Text(Get.find<WritrprescriptionController>().medicines.value[index].strength)
+                                                   ],)
+                                                  ),
+                                                )
+                                              ),
+                                              const SizedBox(height: 30,),
+                                              Text("Date: ${DateTime.now().toString().substring(0,10)}"),
+                                              const SizedBox(height:10),
+                                              const Text("Doctor information",style: TextStyle(color: Constants.primcolor)),
+                                              const SizedBox(height:10),
+                                              ListTile(
+                                                leading: CircleAvatar(
+                                                  radius: 15,
+                                                  backgroundImage: NetworkImage(data["doc_img"]),
                                                 ),
-                                              )
-                                            ),
-                                            const SizedBox(height: 30,),
-                                            // signiture
+                                                title: Text(data["doc_name"]),
+                                                subtitle:Text("Speciality : ${data["doc_sep"]}"),
 
+                                              ),
+                                              // signiture
+                                              const SizedBox(height:10),
+                                              const Text("Signature",style: TextStyle(color: Constants.primcolor)),
+                                              _buildImageView(),
 
-                                          ],
+                                            ],
 
+                                        ),
                                       ),
                                         ),
                                   );
@@ -339,6 +390,7 @@ class WritePrescription extends StatelessWidget {
                               style: TextStyle(color: Colors.white),
                             )),
                       ),
+                      // send prescription
                       SizedBox(
                         width: 150,
                         height: 60,
@@ -349,6 +401,7 @@ class WritePrescription extends StatelessWidget {
                               style: TextStyle(color: Colors.white),
                             )),
                       ),
+
                     ],
                   ),
                 ),

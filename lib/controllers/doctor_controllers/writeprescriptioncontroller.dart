@@ -8,7 +8,8 @@ class WritrprescriptionController extends GetxController{
    TextEditingController mname=TextEditingController();
    TextEditingController mstrength=TextEditingController();
    Rx<List<Pmedicine>> medicines=Rx<List<Pmedicine>>([]);
-   Uint8List? sigimage;
+
+   ValueNotifier<ByteData?> rawImageFit = ValueNotifier<ByteData?>(null);
    // add medicine
 
   Future<void> addmedicine(Pmedicine medcine)async{

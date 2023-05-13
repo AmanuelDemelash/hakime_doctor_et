@@ -129,7 +129,10 @@ class Dappointment extends StatelessWidget {
                                             "user_sex":appointments[index]["user"]["sex"],
                                             "user_phone":appointments[index]["user"]["phone_number"],
                                           "appointment_id":appointments[index]
-                                          ["id"]
+                                          ["id"],
+                                            "doc_name":appointments[index]["doctor"]["full_name"],
+                                            "doc_sep":appointments[index]["doctor"]["speciallities"]["speciallity_name"],
+                                            "doc_img":appointments[index]["doctor"]["profile_image"]["url"]
                                           }),
                                       title: Column(
                                         crossAxisAlignment:
@@ -298,6 +301,9 @@ class Dappointment extends StatelessWidget {
                           variables: {"id":Get.find<SplashController>().prefs.getInt("id")},
                           pollInterval: const Duration(seconds: 10)),
                       builder: (result, {fetchMore, refetch}) {
+                        if(result.hasException){
+                          print(result.exception.toString());
+                        }
                         if (result.isLoading) {
                           return ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
@@ -366,8 +372,10 @@ class Dappointment extends StatelessWidget {
                                                   "user_name":appointments[index]["user"]["full_name"],
                                                   "user_sex":appointments[index]["user"]["sex"],
                                                   "user_phone":appointments[index]["user"]["phone_number"],
-                                                  "appointment_id":appointments[index]
-                                                  ["id"]
+                                                  "appointment_id":appointments[index]["id"],
+                                                  "doc_name":appointments[index]["doctor"]["full_name"],
+                                                  "doc_sep":appointments[index]["doctor"]["speciallities"]["speciallity_name"],
+                                                  "doc_img":appointments[index]["doctor"]["profile_image"]["url"]
                                                 }
                                                 ),
                                             title: Column(
@@ -628,7 +636,10 @@ class Dappointment extends StatelessWidget {
                                                 "user_sex":appointments[index]["user"]["sex"],
                                                 "user_phone":appointments[index]["user"]["phone_number"],
                                                 "appointment_id":appointments[index]
-                                                ["id"]
+                                                ["id"],
+                                                "doc_name":appointments[index]["doctor"]["full_name"],
+                                                "doc_sep":appointments[index]["doctor"]["speciallities"]["speciallity_name"],
+                                                "doc_img":appointments[index]["doctor"]["profile_image"]["url"]
                                               }
                                           ),
                                             title: Column(
