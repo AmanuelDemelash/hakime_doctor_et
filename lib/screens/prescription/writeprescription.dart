@@ -152,7 +152,7 @@ class WritePrescription extends StatelessWidget {
                                 height: 50,
                                 decoration: BoxDecoration(
                                     color: Constants.primcolor,
-                                    borderRadius: BorderRadius.circular(15)),
+                                    borderRadius: BorderRadius.circular(10)),
                                 child: const Center(
                                     child: FaIcon(
                                       FontAwesomeIcons.add,
@@ -273,9 +273,17 @@ class WritePrescription extends StatelessWidget {
                         height: 60,
                         child: ElevatedButton(
                             onPressed: ()async{
+                              Get.find<WritrprescriptionController>().rawImageFit.value= await control.toImage(
+                                color: Colors.black,
+                                background: Colors.greenAccent,
+                                fit: true,
+                              );
                               if(Get.find<WritrprescriptionController>().medicines.value.isEmpty){
                                 customsnack("empty medicine");
-                              } else{
+                              } else if(Get.find<WritrprescriptionController>().rawImageFit.value==null){
+                                customsnack("please provide your signature");
+                              }
+                              else{
                                 Get.find<WritrprescriptionController>().rawImageFit.value= await control.toImage(
                                   color: Colors.black,
                                   background: Colors.greenAccent,

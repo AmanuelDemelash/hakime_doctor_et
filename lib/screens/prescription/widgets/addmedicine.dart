@@ -51,7 +51,6 @@ class Addmedicine extends StatelessWidget {
                               } else {
                                 return null;
                               }
-                              return null;
                             },
                             decoration: InputDecoration(
                                 hintText: "medicine name",
@@ -94,7 +93,6 @@ class Addmedicine extends StatelessWidget {
                               } else {
                                 return null;
                               }
-                              return null;
                             },
                             decoration: InputDecoration(
                                 hintText: "Strength mm/ ml ",
@@ -137,7 +135,6 @@ class Addmedicine extends StatelessWidget {
                               } else {
                                 return null;
                               }
-                              return null;
                             },
                             decoration: InputDecoration(
                                 hintText: "Frequency ",
@@ -187,6 +184,7 @@ class Addmedicine extends StatelessWidget {
                                         strength: Get.find<WritrprescriptionController>().mstrength.text
                                     );
                                     Get.find<WritrprescriptionController>().addmedicine(medicin);
+                                    Get.find<WritrprescriptionController>().clearallinput();
                                     Get.back();
 
                                   }

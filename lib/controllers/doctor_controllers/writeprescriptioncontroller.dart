@@ -22,4 +22,12 @@ class WritrprescriptionController extends GetxController{
      update();
    }
 
+   Future<void> clearallinput()async{
+     mname.clear();
+     mstrength.clear();
+     update();
+   }
+
+
+
 }
