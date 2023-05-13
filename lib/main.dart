@@ -113,7 +113,7 @@ class MyApp extends StatelessWidget {
         locale: const Locale('en', 'US'),
         fallbackLocale: const Locale('en', 'US'),
         debugShowCheckedModeBanner: false,
-        defaultTransition: Transition.circularReveal,
+        defaultTransition: Transition.leftToRight,
         title: Constants.app_name,
         theme: light,
         initialRoute: "/splash",

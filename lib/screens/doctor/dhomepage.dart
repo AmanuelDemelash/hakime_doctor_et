@@ -46,10 +46,10 @@ class Dhomepage extends StatelessWidget {
               activeIndex:
                   Get.find<dhomepagecontroller>().current_bnb_item.value,
               iconSize: 27,
-              backgroundColor: Colors.white,
+              backgroundColor: Constants.primcolor,
               blurEffect: true,
-              activeColor: Constants.primcolor,
-              inactiveColor: Colors.black54,
+              activeColor: Constants.whitesmoke,
+              inactiveColor: Constants.whitesmoke.withOpacity(0.5),
               gapLocation: GapLocation.center,
               notchSmoothness: NotchSmoothness.verySmoothEdge,
               leftCornerRadius: 30,
