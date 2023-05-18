@@ -255,7 +255,7 @@ class dhomepagecontroller extends GetxController {
                             children:const[
                                Image(
                                 image:
-                                    AssetImage("assets/images/helpcenter.png"),
+                                    AssetImage("assets/images/medicine.png"),
                                 width: 45,
                                 height: 45,
                               ),
