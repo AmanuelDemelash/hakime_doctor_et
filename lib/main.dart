@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:hakime_doctor_et/screens/doctor/prescription/myprescription.dart';
 import 'package:hakime_doctor_et/screens/onbording/splash.dart';
 import 'package:hakime_doctor_et/screens/prescription/writeprescription.dart';
 import 'package:hakime_doctor_et/utils/constants.dart';
@@ -148,6 +149,8 @@ class MyApp extends StatelessWidget {
           GetPage(name: "/daddblog", page: () => AddBlog()),
           GetPage(name: "/dnotification", page: () => Dnotifiction()),
           GetPage(name: "/writeprep", page: () =>WritePrescription()),
+          GetPage(name: "/presc", page: () =>Myprescription()),
+
 
           // both screen
           GetPage(name: "/setting", page: () => Setting()),

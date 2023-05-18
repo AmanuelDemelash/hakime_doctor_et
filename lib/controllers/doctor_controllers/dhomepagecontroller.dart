@@ -241,7 +241,9 @@ class dhomepagecontroller extends GetxController {
                     ),
                     // help center
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed("/presc");
+                      },
                       child: Container(
                           width: 90,
                           height: 100,
@@ -250,16 +252,16 @@ class dhomepagecontroller extends GetxController {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)),
                           child: Column(
-                            children: [
-                              const Image(
+                            children:const[
+                               Image(
                                 image:
                                     AssetImage("assets/images/helpcenter.png"),
                                 width: 45,
                                 height: 45,
                               ),
                               Flexible(
-                                child: Text("help_center".tr,
-                                    style: const TextStyle(
+                                child: Text("prescription",
+                                    style:  TextStyle(
                                         fontSize: 10,
                                         fontWeight: FontWeight.bold)),
                               ),
