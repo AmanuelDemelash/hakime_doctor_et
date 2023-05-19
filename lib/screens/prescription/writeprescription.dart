@@ -2,7 +2,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:hakime_doctor_et/screens/prescription/addmedicine.dart';
 import 'package:hand_signature/signature.dart';
 import '../../controllers/doctor_controllers/writeprescriptioncontroller.dart';
 import '../../utils/constants.dart';
