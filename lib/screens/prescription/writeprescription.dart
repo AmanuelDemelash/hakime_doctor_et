@@ -2,14 +2,13 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:hakime_doctor_et/screens/prescription/widgets/addmedicine.dart';
+import 'package:hakime_doctor_et/screens/prescription/addmedicine.dart';
 import 'package:hand_signature/signature.dart';
 import '../../controllers/doctor_controllers/writeprescriptioncontroller.dart';
 import '../../utils/constants.dart';
 
 class WritePrescription extends StatelessWidget {
   Map<String, dynamic> data = Get.arguments;
-
   WritePrescription({Key? key}) : super(key: key);
 
   customsnack(String message) {
@@ -22,7 +21,6 @@ class WritePrescription extends StatelessWidget {
         margin: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
         padding: const EdgeInsets.all(10));
   }
-
   final control = HandSignatureControl(
       threshold: 3.0, smoothRatio: 0.65, velocityRange: 2.0);
 
@@ -58,15 +56,16 @@ class WritePrescription extends StatelessWidget {
         ),
       );
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Constants.whitesmoke,
+        backgroundColor: Constants.primcolor,
         elevation: 0,
         title: const Text(
           "Write prescription",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
         leading: IconButton(
             onPressed: () {
@@ -75,8 +74,9 @@ class WritePrescription extends StatelessWidget {
             },
             icon: const FaIcon(
               FontAwesomeIcons.angleLeft,
-              color: Colors.black,
-            )),
+              color: Colors.white,
+            )
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,19 +142,7 @@ class WritePrescription extends StatelessWidget {
                           const Text("Medicine"),
                           GestureDetector(
                             onTap: () async {
-                              Get.bottomSheet(
-                                  ClipRRect(
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(15),
-                                        topRight: Radius.circular(15)),
-                                    child: BottomSheet(
-                                      onClosing: () {},
-                                      builder: (context) {
-                                        return Addmedicine();
-                                      },
-                                    ),
-                                  ),
-                                  isScrollControlled: true);
+                             Get.toNamed("/addmedicin");
                             },
                             child: Container(
                               width: 50,

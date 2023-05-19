@@ -687,4 +687,27 @@ query(\$id:Int!){
 }
 
 """;
+
+
+  // prescription
+
+  static String allmedicines="""
+  query{
+  medicine {
+    id
+    name
+  }
+}
+ 
+  """;
+
+  static String searchmed="""
+  query(\$name:String!){
+  medicine(where: {name: {_ilike:\$name}}) {
+    id
+    name
+  }
+}
+  
+  """;
 }

@@ -7,6 +7,11 @@ class WritrprescriptionController extends GetxController{
 
    TextEditingController mname=TextEditingController();
    TextEditingController mstrength=TextEditingController();
+   TextEditingController mfrequency=TextEditingController();
+
+   Rx<String> medicin_search_key = "".obs;
+
+   TextEditingController msearch=TextEditingController();
    Rx<List<Pmedicine>> medicines=Rx<List<Pmedicine>>([]);
 
    ValueNotifier<ByteData?> rawImageFit = ValueNotifier<ByteData?>(null);
@@ -25,6 +30,7 @@ class WritrprescriptionController extends GetxController{
    Future<void> clearallinput()async{
      mname.clear();
      mstrength.clear();
+     mfrequency.clear();
      update();
    }
 
