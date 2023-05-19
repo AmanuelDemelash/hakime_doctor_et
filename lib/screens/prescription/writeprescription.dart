@@ -136,13 +136,15 @@ class WritePrescription extends StatelessWidget {
                           color: Constants.primcolor.withOpacity(0.1),
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10))),
-                      child: Row(
+                      child: Column(
+                        children: [
+                        Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text("Medicine"),
                           GestureDetector(
                             onTap: () async {
-                             Get.toNamed("/addmedicin");
+                              Get.toNamed("/addmedicin");
                             },
                             child: Container(
                               width: 50,
@@ -152,23 +154,15 @@ class WritePrescription extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10)),
                               child: const Center(
                                   child: FaIcon(
-                                FontAwesomeIcons.add,
-                                color: Colors.white,
-                              )),
+                                    FontAwesomeIcons.add,
+                                    color: Colors.white,
+                                  )),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                    // list of medicine
-                    AnimatedContainer(
-                        duration: const Duration(seconds: 10),
-                        width: Get.width,
-                        padding: const EdgeInsets.all(15),
-                        margin: const EdgeInsets.only(left: 10, right: 10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10)),
-                        child: GetBuilder<WritrprescriptionController>(
+                          const SizedBox(height: 10,),
+                          GetBuilder<WritrprescriptionController>(
                             init: Get.find<WritrprescriptionController>(),
                             builder: (controller) {
                               if (controller.medicines.value.isEmpty) {
@@ -190,11 +184,11 @@ class WritePrescription extends StatelessWidget {
                                 itemCount: controller.medicines.value.length,
                                 itemBuilder: (context, index) {
                                   return Container(
-                                    margin: const EdgeInsets.only(bottom: 5),
+                                    margin: const EdgeInsets.only(bottom: 5,right: 10),
                                     decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius:
-                                            BorderRadius.circular(15)),
+                                        BorderRadius.circular(15)),
                                     child: ListTile(
                                         leading: Text(
                                           "${index + 1}",
@@ -216,7 +210,25 @@ class WritePrescription extends StatelessWidget {
                                   );
                                 },
                               );
-                            })),
+                            }),
+                         const SizedBox(height: 10,),
+
+
+                        ],
+                      ),
+                    ),
+
+                    // list of medicine
+                    // AnimatedContainer(
+                    //     duration: const Duration(seconds: 10),
+                    //     width: Get.width,
+                    //     padding: const EdgeInsets.all(15),
+                    //     margin: const EdgeInsets.only(left: 10, right: 10),
+                    //     decoration: BoxDecoration(
+                    //         borderRadius: BorderRadius.circular(10)),
+                    //     child:
+                    //
+                    // ),
                     const SizedBox(
                       height: 30,
                     ),
@@ -263,6 +275,7 @@ class WritePrescription extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
+
                   ],
                 ),
               ),
