@@ -139,6 +139,7 @@ class SearchMedicine extends StatelessWidget {
                           Get.back();
                         },
                         child: Container(
+                          color: Colors.white54,
                           padding: const EdgeInsets.all(10),
                             child: Text(medicines[index]["name"])),
                       );
