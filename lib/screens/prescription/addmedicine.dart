@@ -57,6 +57,7 @@ class Addmedicine extends StatelessWidget {
                             bottomRight: Radius.circular(10)
                         )
                     ),
+
                   ),
                   const SizedBox(height: 10,),
                   Padding(

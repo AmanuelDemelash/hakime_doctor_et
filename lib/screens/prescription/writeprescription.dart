@@ -179,13 +179,19 @@ class WritePrescription extends StatelessWidget {
                                  init: Get.find<WritrprescriptionController>(),
                                  builder: (controller) {
                                    if (controller.medicines.value.isEmpty) {
-                                     return const SizedBox(
+                                     return SizedBox(
                                        child: Center(
                                          child: Padding(
-                                           padding: EdgeInsets.all(8.0),
-                                           child: Text(
-                                             "please add medicine",
-                                             style: TextStyle(color: Colors.black54),
+                                           padding:const EdgeInsets.all(8.0),
+                                           child: Column(
+                                             mainAxisAlignment: MainAxisAlignment.start,
+                                             children:[
+                                               Image.asset("assets/images/medicine.png",width: 50,height: 50,),
+                                              const Text(
+                                                 "please add medicine",
+                                                 style: TextStyle(color: Colors.black54),
+                                               ),
+                                             ],
                                            ),
                                          ),
                                        ),
@@ -228,17 +234,6 @@ class WritePrescription extends StatelessWidget {
                            ],
                          ),
                        ),
-                       // list of medicine
-                       // AnimatedContainer(
-                       //     duration: const Duration(seconds: 10),
-                       //     width: Get.width,
-                       //     padding: const EdgeInsets.all(15),
-                       //     margin: const EdgeInsets.only(left: 10, right: 10),
-                       //     decoration: BoxDecoration(
-                       //         borderRadius: BorderRadius.circular(10)),
-                       //     child:
-                       //
-                       // ),
                        const SizedBox(
                          height: 30,
                        ),
