@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -18,6 +17,7 @@ class SearchMedicine extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Constants.primcolor,
+        title:const Text("Search Medicines",style: TextStyle(color: Colors.white),),
         elevation: 0,
         leading: IconButton(
             onPressed: () {
@@ -30,15 +30,14 @@ class SearchMedicine extends StatelessWidget {
         ),
       ),
       body:
-          
         SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: Get.width,
-                height:170,
-                padding: EdgeInsets.all(15),
+                height:120,
+                padding:const EdgeInsets.all(15),
                 decoration:const BoxDecoration(
                   color: Constants.primcolor,
                   borderRadius: BorderRadius.only(
@@ -49,7 +48,6 @@ class SearchMedicine extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Search\n for medicine",style: TextStyle(color: Colors.white,fontSize: 20),),
                     const SizedBox(height: 10,),
                     Center(
                       child: TextFormField(

@@ -389,6 +389,7 @@ query(\$id:Int!){
     time
     date
     patient {
+      id
       full_name
       age
       problem
@@ -421,6 +422,7 @@ query(\$id:Int!){
     time
     date
     patient {
+      id
       full_name
       age
       problem
@@ -453,6 +455,7 @@ query(\$id:Int!){
     time
     date
     patient {
+      id
       full_name
       age
       problem
@@ -656,7 +659,6 @@ query(\$id:Int!){
 """;
 
 // history
-
   static String video_history = """
 query(\$id:Int!){
   appointments(where: {package_type: {_eq: "video"}, user_id: {_eq:\$id}, status: {_eq: "completed"}}) {

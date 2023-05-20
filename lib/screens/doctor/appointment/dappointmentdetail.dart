@@ -36,11 +36,11 @@ class Dappointmentdetail extends StatelessWidget {
               FontAwesomeIcons.angleLeft,
               color: Colors.black,
             )),
-       actions: [
 
-       ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
+        elevation: 10,
+        label:const Text("Write prescription"),
         onPressed:() {
           Get.toNamed("/writeprep",arguments: {
             "user-id":data["user_id"],
@@ -53,7 +53,7 @@ class Dappointmentdetail extends StatelessWidget {
             "doc_img":data["doc_img"]
           });
       }, tooltip: "Write prescription",
-      child:const FaIcon(FontAwesomeIcons.pen,color: Colors.white,)),
+          icon:const FaIcon(FontAwesomeIcons.pen,color: Colors.white,size: 13,)),
       body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Query(
