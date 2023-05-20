@@ -124,6 +124,7 @@ class Dappointment extends StatelessWidget {
                                   child: ListTile(
                                       onTap: () => Get.toNamed("/dappdetail",
                                           arguments: {
+                                            "pat_id":appointments[index]["patient"]["id"],
                                           "user_id":appointments[index]["user"]["id"],
                                             "user_name":appointments[index]["user"]["full_name"],
                                             "user_sex":appointments[index]["user"]["sex"],
@@ -368,6 +369,7 @@ class Dappointment extends StatelessWidget {
                                             onTap: () => Get.toNamed(
                                                 "/dappdetail",
                                                 arguments: {
+                                                  "pat_id":appointments[index]["patient"]["id"],
                                                   "user_id":appointments[index]["user"]["id"],
                                                   "user_name":appointments[index]["user"]["full_name"],
                                                   "user_sex":appointments[index]["user"]["sex"],
@@ -631,6 +633,7 @@ class Dappointment extends StatelessWidget {
                                           onTap: () =>Get.toNamed(
                                               "/dappdetail",
                                               arguments: {
+                                                "pat_id":appointments[index]["patient"]["id"],
                                                 "user_id":appointments[index]["user"]["id"],
                                                 "user_name":appointments[index]["user"]["full_name"],
                                                 "user_sex":appointments[index]["user"]["sex"],

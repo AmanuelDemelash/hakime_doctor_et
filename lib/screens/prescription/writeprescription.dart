@@ -163,7 +163,7 @@ class WritePrescription extends StatelessWidget {
                                      width: 50,
                                      height: 50,
                                      decoration: BoxDecoration(
-                                         color: Constants.primcolor,
+                                         color: Constants.primcolor.withOpacity(0.8),
                                          borderRadius: BorderRadius.circular(10)),
                                      child: const Center(
                                          child: FaIcon(

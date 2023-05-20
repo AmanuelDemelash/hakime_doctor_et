@@ -43,6 +43,7 @@ class Dappointmentdetail extends StatelessWidget {
         label:const Text("Write prescription"),
         onPressed:() {
           Get.toNamed("/writeprep",arguments: {
+            "pat_id":data["pat_id"],
             "user-id":data["user_id"],
              "user_sex":data["user_sex"],
              "user_phone":data["user_phone"],
