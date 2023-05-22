@@ -121,6 +121,7 @@ class WritePrescription extends StatelessWidget {
                              ListTile(
                                leading: const CircleAvatar(
                                  radius: 20,
+                                 backgroundColor: Constants.primcolor,
                                  child: Icon(
                                    Icons.person,
                                    color: Constants.whitesmoke,

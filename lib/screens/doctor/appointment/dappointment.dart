@@ -366,7 +366,8 @@ class Dappointment extends StatelessWidget {
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(10))),
                                         child: ListTile(
-                                            onTap: () => Get.toNamed(
+                                            onTap: () =>
+                                                Get.toNamed(
                                                 "/dappdetail",
                                                 arguments: {
                                                   "pat_id":appointments[index]["patient"]["id"],

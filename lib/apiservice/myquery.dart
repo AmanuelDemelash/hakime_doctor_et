@@ -698,6 +698,10 @@ query(\$id:Int!){
   medicine {
     id
     name
+    description
+    medicine_image {
+      url
+    }
   }
 }
  
@@ -708,8 +712,64 @@ query(\$id:Int!){
   medicine(where: {name: {_ilike:\$name}}) {
     id
     name
+    description
+    medicine_image {
+      url
+    }
   }
 }
   
   """;
+
+  // appoint to get user
+static String doc_user="""
+query(\$id:Int!){
+  appointments(where: {doctor_id: {_eq:\$id}},order_by: {created_at: desc}) {
+    id
+    package_type
+    time
+    date
+    patient {
+      id
+      full_name
+      age
+      problem
+    }
+    price
+    status
+     user {
+      id
+      full_name
+      sex
+      phone_number
+    }
+    doctor {
+      full_name
+      speciallities {
+        speciallity_name
+      }
+      profile_image {
+        url
+      }
+    }
+  }
+}
+""";
+
+// prescription
+
+static String myprescription="""
+query(\$id:Int!){
+  prescriptions(where: {doctor_id: {_eq:\$id}}) {
+    id
+    created_at
+    patient {
+      full_name
+      age
+    }
+  }
+}
+
+
+""";
 }

@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:hakime_doctor_et/screens/doctor/prescription/myprescription.dart';
+import 'package:hakime_doctor_et/screens/prescription/myprescription.dart';
 import 'package:hakime_doctor_et/screens/onbording/splash.dart';
 import 'package:hakime_doctor_et/screens/prescription/addmedicine.dart';
-import 'package:hakime_doctor_et/screens/prescription/searchmedicine.dart';
 import 'package:hakime_doctor_et/screens/prescription/writeprescription.dart';
 import 'package:hakime_doctor_et/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -152,7 +151,6 @@ class MyApp extends StatelessWidget {
           GetPage(name: "/writeprep", page: () =>WritePrescription()),
           GetPage(name: "/presc", page: () =>Myprescription()),
           GetPage(name: "/addmedicin", page: () =>Addmedicine()),
-          GetPage(name: "/searchmedicine", page: () =>SearchMedicine()),
           // both screen
           GetPage(name: "/setting", page: () => Setting()),
         ],
