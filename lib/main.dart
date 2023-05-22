@@ -127,7 +127,6 @@ class MyApp extends StatelessWidget {
           GetPage(name: "/forgotpassword", page: () => ForgotPassword()),
           GetPage(name: "/verification", page: () => VerificationCode()),
           GetPage(name: "/onbording", page: () => Onbordscreen()),
-
           GetPage(name: "/ZegoCloudCall", page: () => ZegoCloudCall()),
           GetPage(
             name: "/voicecll",
@@ -154,8 +153,6 @@ class MyApp extends StatelessWidget {
           GetPage(name: "/presc", page: () =>Myprescription()),
           GetPage(name: "/addmedicin", page: () =>Addmedicine()),
           GetPage(name: "/searchmedicine", page: () =>SearchMedicine()),
-
-
           // both screen
           GetPage(name: "/setting", page: () => Setting()),
         ],

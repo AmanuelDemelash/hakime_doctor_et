@@ -7,7 +7,8 @@ class WritrprescriptionController extends GetxController{
 
    TextEditingController mname=TextEditingController();
    TextEditingController mstrength=TextEditingController();
-   TextEditingController mfrequency=TextEditingController();
+   var dose="g".obs;
+
 
    Rx<String> medicin_search_key = "".obs;
 
@@ -30,7 +31,6 @@ class WritrprescriptionController extends GetxController{
    Future<void> clearallinput()async{
      mname.clear();
      mstrength.clear();
-     mfrequency.clear();
      update();
    }
 

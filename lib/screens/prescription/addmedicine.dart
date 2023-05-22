@@ -53,8 +53,8 @@ class Addmedicine extends StatelessWidget {
                     decoration:const BoxDecoration(
                         color: Constants.primcolor,
                         borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10)
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20)
                         )
                     ),
 
@@ -65,7 +65,11 @@ class Addmedicine extends StatelessWidget {
                     child: Form(
                         key: _formkey,
                         child:Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            const Text("Please provide"),
+                            const Text("Medicine and its dose",style: TextStyle(color: Colors.black54),),
+                            const SizedBox(height:20,),
                             TextFormField(
                               controller: Get.find<WritrprescriptionController>().mname,
                               keyboardType: TextInputType.text,
@@ -84,8 +88,10 @@ class Addmedicine extends StatelessWidget {
                               decoration: InputDecoration(
                                   hintText: "medicine name",
                                   filled: true,
+                                  label:const Text("Name"),
+                                  labelStyle: const TextStyle(color: Constants.primcolor),
                                   contentPadding: const EdgeInsets.all(20),
-                                  prefixIcon: const Icon(Icons.medication_rounded),
+                                  prefixIcon: const Icon(Icons.medication_rounded,color: Constants.primcolor,),
                                   errorBorder: const OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.red),
                                       borderRadius:
@@ -109,91 +115,86 @@ class Addmedicine extends StatelessWidget {
                                   fillColor: Colors.white),
                             ),
                             const SizedBox(height: 10,),
-                            TextFormField(
-                              controller: Get.find<WritrprescriptionController>().mstrength,
-                              keyboardType: TextInputType.number,
-                              validator: (value) {
-                                if (value == "") {
-                                  return customsnack("Strength is empity");
-                                } else if (!RegExp(
-                                    "^[a-zA-Z]")
-                                    .hasMatch(value!)) {
-                                  return customsnack("Please enter valid Strength");
-                                } else {
-                                  return null;
-                                }
-                              },
-                              decoration: InputDecoration(
-                                  hintText: "Strength mm/ ml ",
-                                  filled: true,
-                                  contentPadding: const EdgeInsets.all(20),
-                                  prefixIcon: const Icon(Icons.power),
-                                  errorBorder: const OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.red),
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
-                                  border: const OutlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: Constants.whitesmoke),
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
-                                  focusedBorder: const OutlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: Constants.primcolor),
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                          Constants.primcolor.withOpacity(0.2)),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(15))),
-                                  fillColor: Colors.white),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                      controller: Get.find<WritrprescriptionController>().mstrength,
+                                      keyboardType: TextInputType.number,
+                                      validator: (value) {
+                                        if (value == "") {
+                                          return customsnack("Strength is empity");
+                                        } else if (!RegExp(
+                                            "^[a-zA-Z]")
+                                            .hasMatch(value!)) {
+                                          return customsnack("Please enter valid Strength");
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      decoration: InputDecoration(
+                                          hintText: "Strength mm/ ml ",
+                                          filled: true,
+                                          label:const Text("Dose"),
+                                          labelStyle: const TextStyle(color: Constants.primcolor),
+                                          contentPadding: const EdgeInsets.all(20),
+                                          prefixIcon: const Icon(Icons.power,color: Constants.primcolor,),
+                                          errorBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.red),
+                                              borderRadius:
+                                              BorderRadius.all(Radius.circular(15))),
+                                          border: const OutlineInputBorder(
+                                              borderSide:
+                                              BorderSide(color: Constants.whitesmoke),
+                                              borderRadius:
+                                              BorderRadius.all(Radius.circular(15))),
+                                          focusedBorder: const OutlineInputBorder(
+                                              borderSide:
+                                              BorderSide(color: Constants.primcolor),
+                                              borderRadius:
+                                              BorderRadius.all(Radius.circular(15))),
+                                          enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color:
+                                                  Constants.primcolor.withOpacity(0.2)),
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(15))),
+                                          fillColor: Colors.white),
+                                    ),
+                                ),
+                                const SizedBox(width: 10,),
+                                Container(
+                                  height: 60,
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+
+                                    borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  child:Obx(() =>DropdownButton(
+                                    underline:null,
+                                    elevation: 0,
+                                    style:const TextStyle(color: Constants.primcolor),
+                                    dropdownColor: Colors.white,
+                                    value:Get.find<WritrprescriptionController>().dose.value,
+                                    items:const[
+                                      DropdownMenuItem(value: "g",child: Text("gram(g)"),
+                                      ),
+                                      DropdownMenuItem(value: "mg",child: Text("milligram(mg)"),),
+                                      DropdownMenuItem(value: "mcg",child: Text("micrograms(mcg)"),
+                                      )
+                                    ], onChanged:(value) {
+                                    Get.find<WritrprescriptionController>().dose.value=value!;
+
+                                  },),),
+                                )
+
+                              ],
                             ),
                             const SizedBox(height: 10,),
-                            TextFormField(
-                              controller: Get.find<WritrprescriptionController>().mstrength,
-                              keyboardType: TextInputType.number,
-                              validator: (value) {
-                                if (value == "") {
-                                  return customsnack("frequency is empty");
-                                } else if (!RegExp(
-                                    "^[a-zA-Z]")
-                                    .hasMatch(value!)) {
-                                  return customsnack("Please enter valid frequency");
-                                } else {
-                                  return null;
-                                }
-                              },
-                              decoration: InputDecoration(
-                                  hintText: "Frequency ",
-                                  filled: true,
-                                  contentPadding: const EdgeInsets.all(20),
-                                  prefixIcon: const Icon(Icons.calendar_view_day),
-                                  errorBorder: const OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.red),
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
-                                  border: const OutlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: Constants.whitesmoke),
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
-                                  focusedBorder: const OutlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: Constants.primcolor),
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                          Constants.primcolor.withOpacity(0.2)),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(15))),
-                                  fillColor: Colors.white),
-                            ),
                             const SizedBox(height: 60,),
-                            // add medicine
+                            // add medicineog
                             Container(
                               width: Get.width,
                               height: 50,
@@ -210,8 +211,7 @@ class Addmedicine extends StatelessWidget {
                                     }else{
                                       Pmedicine medicin= Pmedicine(
                                           name: Get.find<WritrprescriptionController>().mname.text,
-                                          strength: Get.find<WritrprescriptionController>().mstrength.text,
-                                        freqency: Get.find<WritrprescriptionController>().mfrequency.text,
+                                          strength: "${Get.find<WritrprescriptionController>().mstrength.text} ${Get.find<WritrprescriptionController>().dose.value}",
                                       );
                                       Get.find<WritrprescriptionController>().addmedicine(medicin);
                                       Get.find<WritrprescriptionController>().clearallinput();
