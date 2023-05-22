@@ -329,6 +329,7 @@ class WritePrescription extends StatelessWidget {
                     ),
                   ),
                 ),
+
                 // submit
                 AnimatedContainer(
                   duration: const Duration(seconds: 10),
