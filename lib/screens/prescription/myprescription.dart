@@ -42,7 +42,7 @@ class Myprescription extends StatelessWidget {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [const SizedBox(height: 6,),
+              children: [
                 const Text("My prescriptions",style: TextStyle(color: Constants.primcolor),),
                 GestureDetector(
                   onTap: () {
@@ -79,9 +79,10 @@ class Myprescription extends StatelessWidget {
                             child: ListView.builder(
                         itemCount: appointments.length,
                         padding:const EdgeInsets.all(20),
-                        itemBuilder:(context, index) {
+                        itemBuilder:(context, index){
                         return ListTile(
-                          onTap: () {
+                          onTap: () async{
+                            Get.back();
                             Get.toNamed(
                                 "/writeprep",
                                 arguments: {
@@ -96,6 +97,7 @@ class Myprescription extends StatelessWidget {
                                   "doc_img":appointments[index]["doctor"]["profile_image"]["url"]
                                 }
                             );
+
                           },
                           leading: Container(
                             width: 50,
