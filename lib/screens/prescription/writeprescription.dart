@@ -13,6 +13,11 @@ import '../../utils/constants.dart';
 class WritePrescription extends StatelessWidget {
   Map<String, dynamic> data = Get.arguments;
 
+  int docid=Get.find<
+      SplashController>()
+      .prefs
+      .getInt("id");
+
   WritePrescription({Key? key}) : super(key: key);
 
   customsnack(String message) {
@@ -166,18 +171,29 @@ class WritePrescription extends StatelessWidget {
                                         Get.toNamed("/addmedicin");
                                       },
                                       child: Container(
-                                        width: 50,
-                                        height: 50,
+                                        width:100,
+                                        height: 40,
                                         decoration: BoxDecoration(
                                             color: Constants.primcolor
                                                 .withOpacity(0.8),
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        child: const Center(
-                                            child: FaIcon(
-                                          FontAwesomeIcons.add,
-                                          color: Colors.white,
-                                        )),
+                                            borderRadius:const
+                                                BorderRadius.only(
+                                                  topRight: Radius.circular(10)
+                                                )),
+                                        child:
+                                        Center(
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children:const[
+                                               FaIcon(
+                                                FontAwesomeIcons.add,
+                                                color: Colors.white,
+                                              ),
+                                               SizedBox(width: 6,),
+                                              Text("Add",style: TextStyle(color: Colors.white),)
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -682,18 +698,15 @@ class WritePrescription extends StatelessWidget {
                                                         onPressed: () {
                                                           // run mutation
                                                           runMutation({
-                                                            "docid": Get.find<
-                                                                    SplashController>()
-                                                                .prefs
-                                                                .getInt("id"),
+                                                            "docid":docid,
                                                             "patid":
-                                                                data["pat_id"],
+                                                            data["pat_id"],
                                                             "userid":
-                                                                data["user_id"],
-                                                            "medarry":"${Get.find<
-                                                                    WritrprescriptionController>()
+                                                            data["user_id"],
+                                                            "medarry":Get.find<
+                                                                WritrprescriptionController>()
                                                                 .medcinArray
-                                                                .value}"
+                                                                .value
                                                           });
                                                         },
                                                         child:

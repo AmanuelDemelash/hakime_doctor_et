@@ -757,7 +757,6 @@ query(\$id:Int!){
 """;
 
 // prescription
-
 static String myprescription="""
 query(\$id:Int!){
   prescriptions(where: {doctor_id: {_eq:\$id}}, order_by: {created_at: desc}) {
@@ -769,7 +768,5 @@ query(\$id:Int!){
     }
   }
 }
-
-
 """;
 }
