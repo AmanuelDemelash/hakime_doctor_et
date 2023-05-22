@@ -558,7 +558,7 @@ class WritePrescription extends StatelessWidget {
                                      TextButton(
                                          onPressed: ()async{
                                            Get.back();
-                                         }, child: const Text("No")) ,
+                                         }, child: const Text("No",style: TextStyle(color:Colors.red),)) ,
                                      TextButton(
                                          onPressed: () {}, child: const Text("Yes")),
                                    ],
