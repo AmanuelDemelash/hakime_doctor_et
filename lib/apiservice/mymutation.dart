@@ -308,4 +308,17 @@ mutation(\$id:Int!) {
 }
 
 """;
+
+  //  prescription
+
+static String addPrescription="""
+mutation(\$docid:Int!,\$patid:Int!,\$userid:Int!,\$medarry:[String!]!){
+  insert_prescriptions(objects: {doctor_id:\$docid, patient_id:\$patid, user_id:\$userid, medicine_name:\$medarry}) {
+    returning {
+      id
+    }
+  }
+}
+""";
+
 }

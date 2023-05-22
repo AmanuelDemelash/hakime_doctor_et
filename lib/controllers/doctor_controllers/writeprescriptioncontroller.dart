@@ -1,19 +1,21 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../screens/prescription/model/pmedcine.dart';
 import 'dart:typed_data';
 class WritrprescriptionController extends GetxController{
 
+  var isSendPrescrip=false.obs;
+
    TextEditingController mname=TextEditingController();
    TextEditingController mstrength=TextEditingController();
    var dose="g".obs;
 
-
    Rx<String> medicin_search_key = "".obs;
 
-   TextEditingController msearch=TextEditingController();
    Rx<List<Pmedicine>> medicines=Rx<List<Pmedicine>>([]);
+   Rx<List<String>> medcinArray=Rx<List<String>>([]);
 
    ValueNotifier<ByteData?> rawImageFit = ValueNotifier<ByteData?>(null);
    // add medicine
@@ -25,6 +27,7 @@ class WritrprescriptionController extends GetxController{
 
    Future<void> removiemedicine(int index)async{
      medicines.value.removeAt(index);
+     medcinArray.value.removeAt(index);
      update();
    }
 
@@ -34,6 +37,27 @@ class WritrprescriptionController extends GetxController{
      update();
    }
 
+  customSnackErr(String message) {
+    return Get.snackbar("Error", message,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        maxWidth: Get.width,
+        snackStyle: SnackStyle.GROUNDED,
+        margin: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
+        padding: const EdgeInsets.all(10));
+  }
+
+  customSnackSuccs(String message) {
+    return Get.snackbar("Success", message,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+        maxWidth: Get.width,
+        snackStyle: SnackStyle.GROUNDED,
+        margin: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
+        padding: const EdgeInsets.all(10));
+  }
 
 
 }

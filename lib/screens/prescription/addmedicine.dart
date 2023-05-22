@@ -224,6 +224,8 @@ class Addmedicine extends StatelessWidget {
                                       strength: "${Get.find<WritrprescriptionController>().mstrength.text} ${Get.find<WritrprescriptionController>().dose.value}",
                                     );
                                     Get.find<WritrprescriptionController>().addmedicine(medicin);
+                                    // add to medcin aarry for mutation
+                                    Get.find<WritrprescriptionController>().medcinArray.value.add(Get.find<WritrprescriptionController>().mname.text);
                                     Get.find<WritrprescriptionController>().clearallinput();
                                     Get.back();
 
@@ -280,7 +282,6 @@ class Addmedicine extends StatelessWidget {
                                       onTap: () {
                                         Get.find<WritrprescriptionController>().mname.text=medicines[index]["name"];
                                         Get.find<WritrprescriptionController>().medicin_search_key.value="";
-                                        Get.find<WritrprescriptionController>().msearch.text="";
                                       },
                                       child:
                                           ListTile(

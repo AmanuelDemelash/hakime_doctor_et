@@ -2,8 +2,12 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:hakime_doctor_et/apiservice/mymutation.dart';
+import 'package:hakime_doctor_et/widgets/cool_loading.dart';
 import 'package:hand_signature/signature.dart';
 import '../../controllers/doctor_controllers/writeprescriptioncontroller.dart';
+import '../../controllers/splashcontroller.dart';
 import '../../utils/constants.dart';
 
 class WritePrescription extends StatelessWidget {
@@ -542,13 +546,19 @@ class WritePrescription extends StatelessWidget {
                              );
                              showDialog(
                                context: context,
+                               barrierDismissible: false,
                                builder: (context) {
-                                 return AlertDialog(
+                              return   Obx(() =>
+                                  AlertDialog(
                                    title: const Text(
                                      "Are you sure?",
                                      style: TextStyle(fontSize: 18),
                                    ),
-                                   content: const Text(
+                                   content:Get.find<WritrprescriptionController>().isSendPrescrip.value==true?
+                                 const SizedBox(
+                                     height: 20,
+                                       child:cool_loding())
+                                       :const Text(
                                      "Do you want to send this prescription paper?",
                                      style: TextStyle(color: Colors.black54),
                                    ),
@@ -559,15 +569,48 @@ class WritePrescription extends StatelessWidget {
                                      TextButton(
                                          onPressed: ()async{
                                            Get.back();
-                                         }, child: const Text("No",style: TextStyle(color:Colors.red),)) ,
-                                     TextButton(
-                                         onPressed: () {}, child: const Text("Yes")),
+                                         }, child: const Text("No",style: TextStyle(color:Colors.red),)),
+                                     Mutation(options: MutationOptions(document: gql(Mymutation.addPrescription),
+                                     onError: (error) {
+                                       Get.find<WritrprescriptionController>().customSnackErr(error!.graphqlErrors.first.message);
+                                       Get.find<WritrprescriptionController>().isSendPrescrip.value=false;
+                                       Get.back();
+                                     },
+                                       onCompleted: (data) {
+                                       if(data!.isNotEmpty){
+                                         Get.find<WritrprescriptionController>().isSendPrescrip.value=false;
+                                         Get.find<WritrprescriptionController>().customSnackSuccs("successfully send prescription");
+                                         Get.back();
+
+                                       }
+                                       },
+                                     ),
+                                         builder: (runMutation, result) {
+                                       if(result!.hasException){
+                                         Get.find<WritrprescriptionController>().isSendPrescrip.value=false;
+                                       }
+                                       if(result!.isLoading){
+                                         Get.find<WritrprescriptionController>().isSendPrescrip.value=true;
+                                       }
+                                       return TextButton(
+                                       onPressed:(){
+                                         // run mutation
+                                         runMutation({
+                                           "docid":Get.find<SplashController>().prefs.getInt("id"),
+                                           "patid":data["pat_id"],
+                                           "userid":data["user_id"],
+                                           "medarry":Get.find<WritrprescriptionController>().medcinArray.value
+                                         });
+
+                                 },
+                                    child: const Text("Yes"));
+                                         },)
+
                                    ],
-                                 );
+                                 ));
                                },
                              );
                            }
-
                          },
                          child: const Text(
                            "Send",
