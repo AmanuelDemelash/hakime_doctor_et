@@ -548,14 +548,19 @@ class WritePrescription extends StatelessWidget {
                                      style: TextStyle(fontSize: 18),
                                    ),
                                    content: const Text(
-                                     "Do you want to send prescription",
+                                     "Do you want to send this prescription paper?",
                                      style: TextStyle(color: Colors.black54),
                                    ),
+                                   icon:const FaIcon(FontAwesomeIcons.prescription),
+                                   titleTextStyle:const TextStyle(color: Constants.primcolor),
+                                   actionsAlignment: MainAxisAlignment.spaceBetween,
                                    actions: [
                                      TextButton(
-                                         onPressed: () {}, child: const Text("Yes")),
+                                         onPressed: ()async{
+                                           Get.back();
+                                         }, child: const Text("No")) ,
                                      TextButton(
-                                         onPressed: () {}, child: const Text("No"))
+                                         onPressed: () {}, child: const Text("Yes")),
                                    ],
                                  );
                                },
