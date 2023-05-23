@@ -626,17 +626,23 @@ class WritePrescription extends StatelessWidget {
                                               Get.back();
                                             },
                                             onCompleted: (data)async{
+
                                               if (data!.isNotEmpty){
+                                                Get.back();
                                                 Get.find<
                                                     WritrprescriptionController>().clearallinput();
                                                 Get.find<WritrprescriptionController>()
                                                     .isSendPrescrip
                                                     .value = false;
+                                                control.clear();
+                                                Get.find<WritrprescriptionController>()
+                                                    .medicines.value.clear();
+                                                Get.find<WritrprescriptionController>()
+                                                    .medcinArray.value.clear();
                                                 Get.find<
                                                     WritrprescriptionController>()
                                                     .customSnackSuccs(
                                                     "successfully send prescription");
-                                                Get.back();
 
                                               }
                                             },
