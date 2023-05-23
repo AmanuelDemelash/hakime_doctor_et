@@ -15,7 +15,7 @@ class WritrprescriptionController extends GetxController{
    Rx<String> medicin_search_key = "".obs;
 
    Rx<List<Pmedicine>> medicines=Rx<List<Pmedicine>>([]);
-   Rx<List<String>> medcinArray=Rx<List<String>>([]);
+   Rx<List<Map<String,String>>> medcinArray=Rx<List<Map<String,String>>>([]);
 
    ValueNotifier<ByteData?> rawImageFit = ValueNotifier<ByteData?>(null);
    // add medicine

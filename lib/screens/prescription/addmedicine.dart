@@ -225,10 +225,13 @@ class Addmedicine extends StatelessWidget {
                                     );
                                     Get.find<WritrprescriptionController>().addmedicine(medicin);
                                     // add to medcin aarry for mutation
-                                    Get.find<WritrprescriptionController>().medcinArray.value.add(Get.find<WritrprescriptionController>().mname.text);
+                                    Get.find<WritrprescriptionController>().medcinArray.value.add(
+                                        {"medicine_name":Get.find<WritrprescriptionController>().mname.text,
+                                          "dose":Get.find<WritrprescriptionController>().mstrength.text,
+                                        }
+                                    );
                                     Get.find<WritrprescriptionController>().clearallinput();
                                     Get.back();
-
                                   }
                                 },
                                 child:const Text("Add medicine",style: TextStyle(color: Colors.white),)),
@@ -271,6 +274,9 @@ class Addmedicine extends StatelessWidget {
                             return const cool_loding();
                           }
                           List medicines=result.data!["medicine"];
+                          if(medicines.isEmpty){
+                            return Text("no medicine found!");
+                          }
                           return
                               ListView.builder(
                                 physics:const NeverScrollableScrollPhysics(),
