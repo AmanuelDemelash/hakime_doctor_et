@@ -761,11 +761,21 @@ static String myprescription="""
 query(\$id:Int!){
   prescriptions(where: {doctor_id: {_eq:\$id}}, order_by: {created_at: desc}) {
     id
-    created_at
     patient {
       full_name
       age
     }
+    prescribed_medicines {
+      id
+      medicine_name
+      dose
+    }
+    user {
+      id
+      full_name
+      sex
+    }
+    created_at
   }
 }
 """;

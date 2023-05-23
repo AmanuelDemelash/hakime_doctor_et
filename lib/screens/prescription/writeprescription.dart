@@ -1,3 +1,4 @@
+
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -624,17 +625,19 @@ class WritePrescription extends StatelessWidget {
                                                   .value = false;
                                               Get.back();
                                             },
-                                            onCompleted: (data) {
-                                              if (data!.isNotEmpty) {
+                                            onCompleted: (data)async{
+                                              if (data!.isNotEmpty){
                                                 Get.find<
-                                                        WritrprescriptionController>()
+                                                    WritrprescriptionController>().clearallinput();
+                                                Get.find<WritrprescriptionController>()
                                                     .isSendPrescrip
                                                     .value = false;
                                                 Get.find<
-                                                        WritrprescriptionController>()
+                                                    WritrprescriptionController>()
                                                     .customSnackSuccs(
-                                                        "successfully send prescription");
+                                                    "successfully send prescription");
                                                 Get.back();
+
                                               }
                                             },
                                           ),
@@ -644,7 +647,6 @@ class WritePrescription extends StatelessWidget {
                                                       WritrprescriptionController>()
                                                   .isSendPrescrip
                                                   .value = false;
-                                              print(result.exception.toString());
                                             }
                                             if (result!.isLoading) {
                                               Get.find<
@@ -699,12 +701,12 @@ class WritePrescription extends StatelessWidget {
                                                         onPressed: () {
                                                           // run mutation
                                                           runMutation({
-                                                            "docid":docid,
-                                                            "patid":
+                                                            "doc_id":docid,
+                                                            "pat_id":
                                                             data["pat_id"],
-                                                            "userid":
+                                                            "user_id":
                                                             data["user_id"],
-                                                            "medarry":Get.find<
+                                                            "prescribed_medicines":Get.find<
                                                                 WritrprescriptionController>()
                                                                 .medcinArray
                                                                 .value

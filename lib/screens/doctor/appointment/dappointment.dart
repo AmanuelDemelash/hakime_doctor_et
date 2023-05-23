@@ -18,24 +18,24 @@ class Dappointment extends StatelessWidget {
         length: 3,
         child: Scaffold(
             appBar: AppBar(
-              backgroundColor: Constants.whitesmoke,
+              backgroundColor: Constants.primcolor,
               title: const Text(
                 "Appointment",
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.white),
               ),
               automaticallyImplyLeading: false,
               leading: IconButton(
                   onPressed: () => Get.back(),
                   icon: const FaIcon(
                     FontAwesomeIcons.angleLeft,
-                    color: Colors.black,
+                    color: Colors.white,
                   )),
               elevation: 0,
               bottom: const TabBar(
                 indicatorWeight: 3,
                 indicatorColor: Constants.primcolor,
                 isScrollable: true,
-                labelColor: Constants.primcolor,
+                labelColor: Constants.whitesmoke,
                 unselectedLabelColor: Colors.black54,
                 tabs: [
                   Tab(

@@ -169,12 +169,11 @@ class Myprescription extends StatelessWidget {
             }
             return   Expanded(
               child: ListView.builder(
-                itemCount: 4,
+                itemCount:presc.length,
                 itemBuilder:(context, index) {
                   return Container(
                     width: Get.width,
-                    height: 120,
-                    margin:const EdgeInsets.all(10),
+                    margin:const EdgeInsets.only(top: 10,left: 10,right: 10),
                     decoration:BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10)
@@ -188,26 +187,34 @@ class Myprescription extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text("12",style: TextStyle(fontSize: 20),),
-                              Text("2023")
+                              Text(presc[index]["created_at"].toString().substring(5,7),style:const TextStyle(fontSize: 25,color: Constants.primcolor),),
+                              Text(presc[index]["created_at"].toString().substring(0,4))
                             ],
                           ),
                         ),
                         const SizedBox(width: 10,),
-
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children:const[
-                              SizedBox(height: 10,),
-                              Text("Prescription",style: TextStyle(
+                            children:[
+                              const SizedBox(height: 10,),
+                              const Text("Prescription",style: TextStyle(
                                 fontWeight: FontWeight.bold,color: Constants.primcolor,
                               ),),
-                              Text("for",style: TextStyle(
+                             const Text("for",style: TextStyle(
                                 color: Colors.black54,
                               ),),
-                              Text("Amanuel demelash"),
-                              Text("male"),
+                              Text(presc[index]["user"]["full_name"]),
+                              Text(presc[index]["user"]["sex"]),
+                              const SizedBox(height: 10,),
+                              Row(
+                                children: [
+                                  const Icon(Icons.medication,size: 17,),
+                                  const SizedBox(width: 10,),
+                                  Text(presc[index]["prescribed_medicines"].length.toString())
+                                ],
+                              ),
+                              const SizedBox(height: 10,)
                             ],
                           ),
                         ),

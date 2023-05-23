@@ -24,17 +24,17 @@ class Dappointmentdetail extends StatelessWidget {
     return Scaffold(
       backgroundColor: Constants.whitesmoke,
       appBar: AppBar(
-        backgroundColor: Constants.whitesmoke,
+        backgroundColor: Constants.primcolor,
         elevation: 0,
         title: const Text(
           "Appointment",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
         leading: IconButton(
             onPressed: () => Get.back(),
             icon: const FaIcon(
               FontAwesomeIcons.angleLeft,
-              color: Colors.black,
+              color: Colors.white,
             )),
 
       ),

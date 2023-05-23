@@ -312,13 +312,20 @@ mutation(\$id:Int!) {
   //  prescription
 
 static String addPrescription="""
-mutation(\$docid:Int!,\$patid:Int!,\$userid:Int!,\$medarry:[String!]!){
-  insert_prescriptions(objects: {doctor_id:\$docid, patient_id:\$patid, user_id:\$userid, medicine_name:\$medarry}) {
-    returning {
-      id
-    }
+mutation(\$user_id: Int!, \$doc_id: Int!, \$pat_id: Int!, \$prescribed_medicines: [prescribed_medicines_insert_input!]!) {
+  insert_prescriptions_one(object: {doctor_id: \$doc_id, user_id: \$user_id, patient_id:  \$pat_id, prescribed_medicines: {data: \$prescribed_medicines}}) {
+    id
   }
 }
 """;
 
 }
+
+
+// mutation(\$docid:Int!,\$patid:Int!,\$userid:Int!,\$medarry:[String!]!){
+// insert_prescriptions(objects: {doctor_id:\$docid, patient_id:\$patid, user_id:\$userid, medicine_name:\$medarry}) {
+// returning {
+// id
+// }
+// }
+// }
