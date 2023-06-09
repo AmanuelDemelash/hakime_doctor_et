@@ -643,7 +643,6 @@ class WritePrescription extends StatelessWidget {
                                                     WritrprescriptionController>()
                                                     .customSnackSuccs(
                                                     "successfully send prescription");
-
                                               }
                                             },
                                           ),
