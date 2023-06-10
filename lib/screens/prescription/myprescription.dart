@@ -38,12 +38,15 @@ class Myprescription extends StatelessWidget {
             height: 60,
             padding:const EdgeInsets.only(left: 10,right: 10),
             decoration:const BoxDecoration(
-              color: Colors.white,
+              color: Constants.primcolor,
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(10),
+              bottomLeft: Radius.circular(10))
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("My prescriptions",style: TextStyle(color: Constants.primcolor),),
+                const Text("My prescriptions",style: TextStyle(color: Colors.white),),
                 GestureDetector(
                   onTap: () {
                     Get.bottomSheet(ClipRRect(
@@ -126,14 +129,14 @@ class Myprescription extends StatelessWidget {
                   child: Container(
                     padding:const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Constants.primcolor.withOpacity(0.7),
+                      color: Constants.whitesmoke,
                       borderRadius: BorderRadius.circular(20)
                     ),
                     child:Row(
                       children:const[
-                         Text("Add new",style: TextStyle(color: Colors.white),),
+                         Text("Add new",style: TextStyle(color: Colors.black),),
                          SizedBox(width: 10,),
-                        FaIcon(FontAwesomeIcons.prescription,color: Colors.white,size: 14,)
+                        FaIcon(FontAwesomeIcons.prescription,color: Colors.black,size: 14,)
                       ],
                     ),
                   ),
