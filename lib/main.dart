@@ -42,7 +42,7 @@ import 'translations/apptranslations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await initHiveForFlutter();
+   await initHiveForFlutter();
   // prefs = await SharedPreferences.getInstance();
   // notification
   AwesomeNotifications().initialize(

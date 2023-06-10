@@ -136,7 +136,7 @@ class Myprescription extends StatelessWidget {
                       children:const[
                          Text("Add new",style: TextStyle(color: Colors.black),),
                          SizedBox(width: 10,),
-                        FaIcon(FontAwesomeIcons.prescription,color: Colors.black,size: 14,)
+                        FaIcon(FontAwesomeIcons.add,color: Constants.primcolor,size: 14,)
                       ],
                     ),
                   ),
@@ -152,7 +152,7 @@ class Myprescription extends StatelessWidget {
           ),
               builder:(result, {fetchMore, refetch}) {
             if(result.hasException){
-              print(result.exception.toString());
+              return const Center(child: cool_loding());
             }
             if(result.isLoading){
               return const Center(child: cool_loding());
