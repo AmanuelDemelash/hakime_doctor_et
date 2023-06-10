@@ -122,9 +122,9 @@ class WritePrescription extends StatelessWidget {
                                 const Padding(
                                   padding: EdgeInsets.all(10),
                                   child: Text(
-                                    "Patient",
+                                    "Patient information",
                                     style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                        TextStyle(),
                                   ),
                                 ),
                                 ListTile(
@@ -175,7 +175,7 @@ class WritePrescription extends StatelessWidget {
                                         width:100,
                                         height: 40,
                                         decoration: BoxDecoration(
-                                            color: Constants.primcolor
+                                            color: Colors.orange
                                                 .withOpacity(0.8),
                                             borderRadius:const
                                                 BorderRadius.only(

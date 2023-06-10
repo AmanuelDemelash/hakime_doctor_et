@@ -39,12 +39,11 @@ import 'screens/setting.dart';
 import 'theme/light_theme.dart';
 import 'translations/apptranslations.dart';
 
-late final prefs;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initHiveForFlutter();
-  prefs = await SharedPreferences.getInstance();
+  // await initHiveForFlutter();
+  // prefs = await SharedPreferences.getInstance();
   // notification
   AwesomeNotifications().initialize(
       //set the icon to null if you want to use the default app icon
@@ -95,9 +94,9 @@ class MyApp extends StatelessWidget {
     final Link link = Link.split(
         (request) => request.isSubscription, websocketLink, httpLink);
 
-    var token = prefs.getString("token");
+    //var token = prefs.getString("token");
     final AuthLink authLink = AuthLink(
-      getToken: () async => 'Bearer <$token>',
+      getToken: () async => 'Bearer <>',
     );
     final Link main_link = authLink.concat(link);
     ValueNotifier<GraphQLClient> client = ValueNotifier(
